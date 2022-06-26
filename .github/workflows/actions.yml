@@ -1,8 +1,17 @@
 name: Actions Workflow
 
 on: 
-  repository_dispatch:
-    types: [build]
+  push:
+    branches:
+      - main
+      - 'feature/**'
+      - '!feature/featc' # will ignore, even when mentioned here. 
+    tags:
+      - v1
+    paths:
+      - "**.js"    
+  # repository_dispatch:
+  #   types: [build]
   # schedule:
   #   - cron: "0/5 * * * *"
   # push:    
@@ -11,7 +20,7 @@ on:
       - closed
       - assigned
       - opened
-      - reopened 
+      - reopened  
 
 jobs:
   run-github-actions:
